@@ -117,6 +117,13 @@ real code. The [**WALKTHROUGH**](.claude/skills/qrspi/WALKTHROUGH.md) narrates t
 stage by stage — read it side by side. The two examples prove the headline: identical flow,
 only the resolved commands differ.
 
+> **A note on tickets.** In these examples the ticket is just a markdown file in
+> `tickets/active/` (`jira.mode: none`) — manual on purpose, so the demo runs with zero
+> external setup. QRSPI also speaks to real ticketing systems: set `jira.mode` to `mcp` and
+> Claude fetches, comments on, and transitions issues through the Atlassian (Jira) MCP
+> tools/API. We leave that out here for simplicity and to keep the examples portable — the
+> hook is built in, wiring up a provider is up to you.
+
 ## Quickstart — adopt it in your repo
 
 ```bash

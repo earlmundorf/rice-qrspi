@@ -59,6 +59,11 @@ ticket is the UI twin of the FastAPI one: the `Todo` type already has a `complet
 `TodoList` already strikes through done items — but nothing sets it. Add the toggle, routed
 through the API boundary.
 
+> Tickets are manual files here on purpose — zero external setup. QRSPI can also pull from a
+> real ticketing system: set `jira.mode` to `mcp` and Claude fetches/comments/transitions
+> issues via the Atlassian (Jira) MCP tools/API. We leave that unwired for portability; the
+> hook is built in.
+
 ## Compare the two stacks
 
 | | `fastapi-todo` | `react-todo` |

@@ -57,6 +57,11 @@ a good **simple**/**full**), and walk you through Ticket → Research → Design
 Plan → Implement → Validate. When it ships, stage 7 moves the ticket file to
 `tickets/completed/`.
 
+> Tickets are manual files here on purpose — zero external setup. QRSPI can also pull from a
+> real ticketing system: set `jira.mode` to `mcp` and Claude fetches/comments/transitions
+> issues via the Atlassian (Jira) MCP tools/API. We leave that unwired for portability; the
+> hook is built in.
+
 ## The ticket, in one line
 
 **TODO-1** — there's a `completed` flag on `Todo` but no way to set it; add the ability to

@@ -1,0 +1,74 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  profiles:
+    name: Validate profile JSON
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate every config / profile JSON
+        run: |
+          python3 - <<'PY'
+          import json, pathlib, sys
+          roots = ["working-docs", "examples"]
+          files = []
+          for r in roots:
+              files += pathlib.Path(r).rglob("config.json")
+              files += pathlib.Path(r).rglob("profiles/*.json")
+          files = sorted(set(files))
+          bad = 0
+          for f in files:
+              try:
+                  json.loads(f.read_text())
+                  print(f"ok   {f}")
+              except Exception as e:  # noqa: BLE001
+                  print(f"FAIL {f}: {e}")
+                  bad += 1
+          if not files:
+              print("no JSON files found", file=sys.stderr); sys.exit(1)
+          sys.exit(1 if bad else 0)
+          PY
+
+  fastapi-example:
+    name: FastAPI example (ruff · mypy · pytest)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: examples/fastapi-todo
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+      - run: uv sync
+      - run: uv run ruff check .
+      - run: uv run ruff format --check .
+      - run: uv run mypy app
+      - run: uv run pytest -q
+
+  react-example:
+    name: React example (tsc · eslint · build)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: examples/react-todo
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: examples/react-todo/package-lock.json
+      - run: npm ci
+      - run: npx tsc --noEmit
+      - run: npm run lint
+      - run: npm run build

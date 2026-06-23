@@ -1,0 +1,37 @@
+# Environment
+.env
+.env.*
+!.env.example
+
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Build output
+dist/
+build/
+*.egg-info/
+.gradle/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Claude Code
+.claude/settings.local.json
+
+# Logs
+*.log
+logs/
+
+# QRSPI per-ticket scratch — keep the committed config and profiles, ignore the rest
+working-docs/*
+!working-docs/config.json
+!working-docs/profiles/

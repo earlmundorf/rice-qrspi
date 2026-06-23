@@ -1,0 +1,41 @@
+{
+  "profile": "REPLACE-ME — copy the closest file from working-docs/profiles/ over this one, then edit",
+  "stack": "<detected stack, e.g. react-typescript-vite | java-spring-boot | python-fastapi>",
+  "workingDir": ".",
+  "protectedPaths": [
+    "node_modules/",
+    "dist/",
+    "<generated/vendored/OOTB trees this stack must never edit>"
+  ],
+  "apiBoundary": "<path to the designated I/O boundary layer, or null>",
+  "build": {
+    "INSTALL": "<install command>",
+    "TYPECHECK": "<typecheck/compile command>",
+    "LINT": "<lint command>",
+    "BUILD": "<build command>",
+    "UNIT_TEST": "MANUAL: <how to verify until a runner is configured> — or the real command",
+    "DEV_SERVER": "<long-running dev/preview command, for manual checks>"
+  },
+  "changeTypeVerbs": {
+    "<glob, e.g. ts|tsx>": ["TYPECHECK", "LINT", "BUILD"],
+    "<glob, e.g. package.json|lockfile>": ["INSTALL", "BUILD"]
+  },
+  "jira": {
+    "mode": "manual",
+    "project": null
+  },
+  "researchLayers": [
+    { "name": "<layer-1>", "targets": "<files/dirs/patterns this layer scans>" },
+    { "name": "<layer-2>", "targets": "<...>" }
+  ],
+  "_notes": [
+    "This is a TEMPLATE. Copy the closest working-docs/profiles/*.json (storefront,",
+    "springboot, fastapi) over this file for a real starting point, then adjust.",
+    "Every VERB referenced by a stage checkpoint must exist in 'build'. A verb may be",
+    "'MANUAL: <steps>' — stages print the steps and wait instead of running a command.",
+    "Set jira.mode to 'mcp' if the Atlassian MCP connector is available in your session;",
+    "'manual' if Jira exists but is unreachable (paste in, updates written paste-ready);",
+    "'none' if there is no Jira.",
+    "The repo's CLAUDE.md is authoritative for conventions; restate the load-bearing ones here."
+  ]
+}

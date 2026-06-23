@@ -21,11 +21,12 @@ with the gates and verified checkpoints, in about 20 seconds:
 
 ![QRSPI demo](demo/qrspi-demo.gif)
 
-> Rendered by [VHS](https://github.com/charmbracelet/vhs) from
-> [`demo/demo.tape`](demo/demo.tape) — a faithful reenactment for a clean, reproducible
-> clip. The **real** artifacts and commands are in the
-> [WALKTHROUGH](.claude/skills/qrspi/WALKTHROUGH.md), and you can run the whole thing
-> yourself in [`examples/fastapi-todo`](examples/fastapi-todo).
+> The GIF loops; **prefer pause / scrub / replay?** Watch the
+> [MP4](demo/qrspi-demo.mp4) instead. Rendered by
+> [VHS](https://github.com/charmbracelet/vhs) from [`demo/demo.tape`](demo/demo.tape) — a
+> faithful reenactment for a clean, reproducible clip. The **real** artifacts and commands
+> are in the [WALKTHROUGH](.claude/skills/qrspi/WALKTHROUGH.md), and you can run the whole
+> thing yourself in [`examples/fastapi-todo`](examples/fastapi-todo).
 
 ---
 

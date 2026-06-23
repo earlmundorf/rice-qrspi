@@ -21,15 +21,23 @@ at render time). For the **real** thing, see:
 # one-time: install vhs (brings ttyd + ffmpeg as deps)
 brew install vhs            # or: https://github.com/charmbracelet/vhs#installation
 
-# from the repo root
-vhs demo/demo.tape          # writes demo/qrspi-demo.gif
+# from the repo root — writes BOTH outputs:
+vhs demo/demo.tape          #   demo/qrspi-demo.gif  (loops, for the README)
+                            #   demo/qrspi-demo.mp4  (plays once, with pause/scrub controls)
 ```
 
-Then embed it in the top-level README (the line is pre-written there, commented out — just
-uncomment it) and commit `demo/qrspi-demo.gif`.
+Both are committed and referenced from the top-level README.
 
-## Tweak it
+## Tweak the pacing
 
-- Pacing/content live in [`qrspi-demo.sh`](qrspi-demo.sh) (the `sleep` values).
-- Size, theme, font, and the capture window live in [`demo.tape`](demo.tape). If you change
-  the script's total runtime, update the final `Sleep` in the tape to match.
+A GIF can't be paused, so pacing is controlled entirely by the `sleep` values in
+[`qrspi-demo.sh`](qrspi-demo.sh):
+
+- `LINE` / `HEAD` / `GATE` — per-line pauses (raise them to slow it down overall).
+- `HOLD` — how long the final summary frame stays on screen before the GIF loops.
+- The script runs ~29s; the tape's trailing `Sleep` (in [`demo.tape`](demo.tape)) is set
+  **just under** that so the recording ends on the summary frame instead of the returning
+  shell prompt. If you change the script's runtime, adjust that `Sleep` to match.
+
+Size, theme, and font also live in [`demo.tape`](demo.tape). For true pause/scrub, point
+people at the `.mp4`.

@@ -9,12 +9,15 @@ keep it sustainable, the contribution model is intentionally narrow:
 
 - ✅ **Forking is encouraged.** It's [MIT-licensed](LICENSE) — fork it, adapt it, build
   profiles for your stack, ship your own version. That's exactly what it's for.
-- ✅ **Issues are welcome.** Found a bug, hit a rough edge, or have an idea? [Open an
+- ✅ **Issues are welcome.** Found a bug, hit a rough edge? [Open an
   issue](https://github.com/earlmundorf/rice-qrspi/issues). I read them.
+- ✅ **Want to propose a new feature?** Open an issue describing it. If it's a good fit, I'm
+  happy to **collaborate** with you on getting it in — that's the path for code, rather than
+  a surprise PR.
 - 🚫 **Unsolicited pull requests aren't accepted.** PRs from people I don't already work
   with are **closed automatically** (politely — see `.github/workflows/close-external-prs.yml`).
-  It's not personal; it's how I keep a solo project manageable. If you'd genuinely like to
-  collaborate, open an issue first and let's talk.
+  It's not personal; it's how I keep a solo project manageable. Start with an issue and
+  let's talk.
 
 So: **fork freely, file issues, but don't send code you'd be unhappy to see closed.**
 

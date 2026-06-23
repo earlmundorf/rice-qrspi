@@ -36,7 +36,8 @@ jobs:
               "",
               "You're very welcome to:",
               "- **Fork it** and adapt it however you like — it's MIT-licensed, and that's the intended path.",
-              "- **Open an [issue](https://github.com/earlmundorf/rice-qrspi/issues)** if you've found a bug or have an idea.",
+              "- **Report a bug** by opening an [issue](https://github.com/earlmundorf/rice-qrspi/issues).",
+              "- **Propose a feature** — open an issue describing what you have in mind. If it's a good fit, I'm happy to **collaborate** with you on getting it in.",
               "",
               "See [CONTRIBUTING.md](https://github.com/earlmundorf/rice-qrspi/blob/main/CONTRIBUTING.md) for the details. Thanks for taking a look!",
             ].join("\n");

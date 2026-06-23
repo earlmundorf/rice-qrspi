@@ -1,10 +1,8 @@
 # VHS tape for the QRSPI demo.
 # Render from the repo root:  vhs demo/demo.tape
-#   → demo/qrspi-demo.gif  (loops; final summary frame held ~5s before looping)
-#   → demo/qrspi-demo.mp4  (plays once, with real pause / scrub / replay controls)
+#   → demo/qrspi-demo.mp4  (embedded in the README with <video controls>; play on demand)
 # Install VHS: https://github.com/charmbracelet/vhs  (brew install vhs)
 
-Output demo/qrspi-demo.gif
 Output demo/qrspi-demo.mp4
 
 Set Shell bash

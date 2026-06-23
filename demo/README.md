@@ -1,7 +1,8 @@
 # demo/
 
-The demo GIF in the project README is rendered with
-[VHS](https://github.com/charmbracelet/vhs) from [`demo.tape`](demo.tape).
+The demo video in the project README is rendered with
+[VHS](https://github.com/charmbracelet/vhs) from [`demo.tape`](demo.tape) and embedded as an
+MP4 with a `<video controls>` player (play on demand — no autoplay, no loop).
 
 ## What it shows
 
@@ -21,23 +22,23 @@ at render time). For the **real** thing, see:
 # one-time: install vhs (brings ttyd + ffmpeg as deps)
 brew install vhs            # or: https://github.com/charmbracelet/vhs#installation
 
-# from the repo root — writes BOTH outputs:
-vhs demo/demo.tape          #   demo/qrspi-demo.gif  (loops, for the README)
-                            #   demo/qrspi-demo.mp4  (plays once, with pause/scrub controls)
+# from the repo root:
+vhs demo/demo.tape          # writes demo/qrspi-demo.mp4
 ```
 
-Both are committed and referenced from the top-level README.
+The MP4 is committed and embedded in the top-level README via a `<video>` tag (it needs an
+absolute raw URL — `https://github.com/earlmundorf/rice-qrspi/raw/main/demo/qrspi-demo.mp4`
+— because GitHub doesn't rewrite relative paths for `<video>` the way it does for images).
+The player renders on github.com; in plain-markdown viewers it falls back to a download link.
 
 ## Tweak the pacing
 
-A GIF can't be paused, so pacing is controlled entirely by the `sleep` values in
-[`qrspi-demo.sh`](qrspi-demo.sh):
+Pacing is controlled entirely by the `sleep` values in [`qrspi-demo.sh`](qrspi-demo.sh):
 
 - `LINE` / `HEAD` / `GATE` — per-line pauses (raise them to slow it down overall).
-- `HOLD` — how long the final summary frame stays on screen before the GIF loops.
+- `HOLD` — how long the final summary frame stays on screen.
 - The script runs ~29s; the tape's trailing `Sleep` (in [`demo.tape`](demo.tape)) is set
   **just under** that so the recording ends on the summary frame instead of the returning
   shell prompt. If you change the script's runtime, adjust that `Sleep` to match.
 
-Size, theme, and font also live in [`demo.tape`](demo.tape). For true pause/scrub, point
-people at the `.mp4`.
+Size, theme, and font also live in [`demo.tape`](demo.tape).

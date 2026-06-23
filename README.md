@@ -17,16 +17,18 @@ and run `/cq:go YOUR-TICKET`.
 ## See it run
 
 A `/cq:go TODO-1` run — Ticket → Research → Design → Structure → Plan → Implement → Validate,
-with the gates and verified checkpoints, in about 20 seconds:
+with the gates and verified checkpoints. Press play:
 
-![QRSPI demo](demo/qrspi-demo.gif)
+<video src="https://github.com/earlmundorf/rice-qrspi/raw/main/demo/qrspi-demo.mp4" controls width="100%">
+  Your viewer can't embed the video —
+  <a href="https://github.com/earlmundorf/rice-qrspi/raw/main/demo/qrspi-demo.mp4">watch the MP4 here</a>.
+</video>
 
-> The GIF loops; **prefer pause / scrub / replay?** Watch the
-> [MP4](demo/qrspi-demo.mp4) instead. Rendered by
-> [VHS](https://github.com/charmbracelet/vhs) from [`demo/demo.tape`](demo/demo.tape) — a
-> faithful reenactment for a clean, reproducible clip. The **real** artifacts and commands
-> are in the [WALKTHROUGH](.claude/skills/qrspi/WALKTHROUGH.md), and you can run the whole
-> thing yourself in [`examples/fastapi-todo`](examples/fastapi-todo).
+> A faithful reenactment for a clean, reproducible clip, rendered by
+> [VHS](https://github.com/charmbracelet/vhs) from [`demo/demo.tape`](demo/demo.tape). The
+> **real** artifacts and commands are in the
+> [WALKTHROUGH](.claude/skills/qrspi/WALKTHROUGH.md), and you can run the whole thing
+> yourself in [`examples/fastapi-todo`](examples/fastapi-todo).
 
 ---
 

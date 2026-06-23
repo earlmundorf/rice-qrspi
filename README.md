@@ -188,9 +188,9 @@ varies by stack goes in the config, not the command.
 
 ## Attribution
 
-Inspired by the QRSPI ticket-workflow approach; the command mechanics here were adapted from
-an MIT-licensed implementation ([github.com/matanshavit/qrspi](https://github.com/matanshavit/qrspi)).
-This repo genericizes project-specific variants into a single, config-driven skill.
+QRSPI — and the Research-Plan-Implement (RPI) workflow it grew from — is the work of
+**Dex Horthy** (HumanLayer). This repo adapts it into a single, config-driven, stack-neutral
+skill; it isn't affiliated with or endorsed by him.
 
 ## License
 

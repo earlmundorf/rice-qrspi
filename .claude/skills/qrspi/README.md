@@ -51,5 +51,5 @@ push/deploy without consent.
 
 Pick the closest, copy it to `working-docs/config.json`, edit, commit.
 
-Attribution: inspired by the QRSPI workflow; command mechanics adapted from an MIT-licensed
-implementation (github.com/matanshavit/qrspi). Genericized from project-specific variants.
+Attribution: QRSPI and the RPI workflow it grew from are the work of Dex Horthy (HumanLayer).
+This repo adapts QRSPI into a single, config-driven skill.

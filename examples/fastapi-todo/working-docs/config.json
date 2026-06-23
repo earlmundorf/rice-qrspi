@@ -1,0 +1,38 @@
+{
+  "profile": "fastapi",
+  "stack": "python-fastapi",
+  "workingDir": ".",
+  "packageManager": "uv",
+  "appModule": "app.main:app",
+  "protectedPaths": [".venv/", "__pycache__/", "*.egg-info/", ".env"],
+  "apiBoundary": "external calls go through a typed client/service layer — no inline httpx/requests in routers",
+  "build": {
+    "INSTALL": "uv sync",
+    "TYPECHECK": "uv run mypy app",
+    "LINT": "uv run ruff check .",
+    "FORMAT_CHECK": "uv run ruff format --check .",
+    "UNIT_TEST": "uv run pytest -q",
+    "INTEGRATION_TEST": "uv run pytest -q -m integration",
+    "RUN": "uv run uvicorn app.main:app --reload"
+  },
+  "changeTypeVerbs": {
+    "py": ["LINT", "TYPECHECK", "UNIT_TEST"],
+    "*router*.py|*api*.py|*endpoints*.py": ["LINT", "TYPECHECK", "UNIT_TEST"],
+    "*models*.py|*schemas*.py|migration": ["TYPECHECK", "UNIT_TEST"],
+    "pyproject.toml|uv.lock": ["INSTALL"]
+  },
+  "jira": { "mode": "none", "project": null },
+  "researchLayers": [
+    { "name": "routers", "targets": "app/routers/, path operations, dependencies (Depends), status codes" },
+    { "name": "schemas", "targets": "app/schemas.py, Pydantic request/response models, validators" },
+    { "name": "services-data", "targets": "app/store.py, business logic, the data boundary" },
+    { "name": "app-config", "targets": "app/main.py, router wiring, middleware, settings" },
+    { "name": "build", "targets": "pyproject.toml, uv.lock, pytest/ruff/mypy config" }
+  ],
+  "_notes": [
+    "Live config for the examples/fastapi-todo demo. jira.mode is 'none', so stage 1 reads the ticket from tickets/active/ instead of Jira.",
+    "Stack managed with uv: 'uv sync' installs from the lockfile; 'uv run <tool>' runs inside the project venv.",
+    "INTEGRATION_TEST is wired (pytest -m integration) but this trivial app has no integration tests yet — the marker is registered in pyproject.toml.",
+    "Walkthrough that uses this config: ../../.claude/skills/qrspi/WALKTHROUGH.md"
+  ]
+}

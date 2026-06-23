@@ -1,0 +1,12 @@
+# The skill + commands are copied in by setup.sh — source of truth is the repo root
+.claude/skills/
+.claude/commands/
+
+# Node / Vite
+node_modules/
+dist/
+*.local
+
+# QRSPI per-ticket scratch — keep config.json, ignore worked-ticket output
+working-docs/*
+!working-docs/config.json

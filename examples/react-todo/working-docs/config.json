@@ -1,0 +1,37 @@
+{
+  "profile": "storefront",
+  "stack": "react-typescript-vite",
+  "workingDir": ".",
+  "packageManager": "npm",
+  "protectedPaths": ["node_modules/", "dist/", ".env"],
+  "apiBoundary": "src/services/api.ts",
+  "build": {
+    "INSTALL": "npm install",
+    "TYPECHECK": "npx tsc --noEmit",
+    "LINT": "npm run lint",
+    "BUILD": "npm run build",
+    "UNIT_TEST": "MANUAL: no test runner configured — verify with TYPECHECK + LINT + a dev-server check",
+    "DEV_SERVER": "npm run dev",
+    "PREVIEW": "npm run preview"
+  },
+  "changeTypeVerbs": {
+    "ts|tsx": ["TYPECHECK", "LINT", "BUILD"],
+    "css": ["BUILD"],
+    "package.json|package-lock.json": ["INSTALL", "BUILD"],
+    "vite.config|tsconfig|eslint.config": ["TYPECHECK", "LINT", "BUILD"]
+  },
+  "jira": { "mode": "none", "project": null },
+  "researchLayers": [
+    { "name": "pages-app", "targets": "src/App.tsx, top-level composition and loading/error wiring" },
+    { "name": "components", "targets": "src/components/, props contracts" },
+    { "name": "state", "targets": "src/hooks/useTodos.ts, list/loading/error state" },
+    { "name": "api-types", "targets": "src/services/api.ts (the boundary), src/types/index.ts" },
+    { "name": "build-config", "targets": "vite.config.ts, tsconfig.json, eslint.config.js" }
+  ],
+  "_notes": [
+    "Live config for examples/react-todo. jira.mode is 'none', so stage 1 reads the ticket from tickets/active/.",
+    "UNIT_TEST is MANUAL — the storefront starter leaves it until a runner (Vitest) is added; verify with TYPECHECK + LINT + a dev-server check.",
+    "All state I/O goes through apiBoundary (src/services/api.ts); components never reach past it.",
+    "Sibling example on a different stack: ../fastapi-todo (same TODO-1, Python verbs). Narrated walkthrough: ../../.claude/skills/qrspi/WALKTHROUGH.md"
+  ]
+}

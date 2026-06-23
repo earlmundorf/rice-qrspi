@@ -1,0 +1,44 @@
+name: Close external PRs
+
+# rice-qrspi is a personal project that does not accept unsolicited pull requests.
+# PRs from anyone who isn't the owner / a collaborator get a courteous comment and are
+# closed. Forks and issues are the intended ways to engage (see CONTRIBUTING.md).
+#
+# Uses pull_request_target so the workflow has permission to comment on and close PRs
+# that come from forks. It never checks out or runs PR code — it only comments/closes —
+# so the elevated token is safe here.
+
+on:
+  pull_request_target:
+    types: [opened, reopened]
+
+permissions:
+  pull-requests: write
+  issues: write
+
+jobs:
+  close:
+    runs-on: ubuntu-latest
+    if: >-
+      github.event.pull_request.author_association != 'OWNER' &&
+      github.event.pull_request.author_association != 'MEMBER' &&
+      github.event.pull_request.author_association != 'COLLABORATOR'
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const number = context.payload.pull_request.number;
+            const body = [
+              "Thanks for your interest in **rice-qrspi**! 🙏",
+              "",
+              "This is a personal project and I'm **not accepting unsolicited pull requests**, so I'm closing this one automatically — no offense meant.",
+              "",
+              "You're very welcome to:",
+              "- **Fork it** and adapt it however you like — it's MIT-licensed, and that's the intended path.",
+              "- **Open an [issue](https://github.com/earlmundorf/rice-qrspi/issues)** if you've found a bug or have an idea.",
+              "",
+              "See [CONTRIBUTING.md](https://github.com/earlmundorf/rice-qrspi/blob/main/CONTRIBUTING.md) for the details. Thanks for taking a look!",
+            ].join("\n");
+            await github.rest.issues.createComment({ owner, repo, issue_number: number, body });
+            await github.rest.pulls.update({ owner, repo, pull_number: number, state: "closed" });

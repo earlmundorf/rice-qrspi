@@ -1,23 +1,31 @@
 # Contributing to rice-qrspi
 
-Thanks for your interest! This repo is the canonical home of the **QRSPI** workflow — a
-generic, config-driven Claude Code skill. Contributions that make it sharper or easier to
-adopt across more stacks are very welcome.
+Thanks for your interest — a quick, honest note on how this project is run.
 
-## Ways to contribute
+## This is a personal project
 
-- **A new profile.** The highest-leverage contribution. If you've adapted QRSPI to a stack
-  we don't ship yet (Django/Flask, Go, Rails, .NET, mobile, …), add a
-  `working-docs/profiles/<stack>.json`. See [Adding a profile](#adding-a-profile).
-- **Improve a stage.** The stages live in `.claude/skills/qrspi/commands/0_go.md` …
-  `7_validate.md`. Keep them stack-neutral (see the golden rule below).
-- **Docs & examples.** README, WALKTHROUGH, QUICKREF — clarity for newcomers matters.
-- **Findings.** Real lessons from running QRSPI belong in `.claude/skills/qrspi/findings/`
-  (one file per finding, from `TEMPLATE.md`).
+rice-qrspi is maintained by one person, on purpose, as a personal open-source project. To
+keep it sustainable, the contribution model is intentionally narrow:
 
-## The golden rule: keep the stages stack-neutral
+- ✅ **Forking is encouraged.** It's [MIT-licensed](LICENSE) — fork it, adapt it, build
+  profiles for your stack, ship your own version. That's exactly what it's for.
+- ✅ **Issues are welcome.** Found a bug, hit a rough edge, or have an idea? [Open an
+  issue](https://github.com/earlmundorf/rice-qrspi/issues). I read them.
+- 🚫 **Unsolicited pull requests aren't accepted.** PRs from people I don't already work
+  with are **closed automatically** (politely — see `.github/workflows/close-external-prs.yml`).
+  It's not personal; it's how I keep a solo project manageable. If you'd genuinely like to
+  collaborate, open an issue first and let's talk.
 
-The whole point of QRSPI is **one skill, many stacks**. A stage command must never hardcode
+So: **fork freely, file issues, but don't send code you'd be unhappy to see closed.**
+
+## If you forked it (the recommended path)
+
+Everything below helps your fork stay healthy. None of it is a request to send changes back
+here — it's how the skill is meant to be extended in *your* copy.
+
+### Keep the stages stack-neutral
+
+The whole point of QRSPI is **one skill, many stacks**. A stage command should never hardcode
 a stack-specific path, command, or vocabulary. If something varies by stack, it belongs in
 `working-docs/config.json`, not in a stage:
 
@@ -26,10 +34,18 @@ a stack-specific path, command, or vocabulary. If something varies by stack, it 
 - a path to never touch → `protectedPaths`
 - the I/O boundary → `apiBoundary`
 
-If you find yourself wanting to write "for React, do X; for Spring Boot, do Y" in a stage,
-that's the signal to add a config field instead.
+If you catch yourself writing "for React, do X; for Spring Boot, do Y" in a stage, that's the
+signal to add a config field instead.
 
-## Editing stages — keep the two copies in sync
+### Adding a profile for your stack
+
+1. Copy an existing profile in `working-docs/profiles/` as a starting point.
+2. Fill in: `profile`, `stack`, `workingDir`, `protectedPaths`, `apiBoundary`, the `build`
+   verb table, `changeTypeVerbs`, `researchLayers`, and `jira.mode`.
+3. Validate it: `python3 -c "import json; json.load(open('working-docs/profiles/<x>.json'))"`.
+4. Point `working-docs/config.json` at it and run a ticket through `/cq:go`.
+
+### Editing stages — keep the two copies in sync
 
 `.claude/skills/qrspi/commands/*.md` is the **source of truth**. Claude Code reads `/cq:*`
 from `.claude/commands/cq/`. After editing a stage, re-sync:
@@ -38,32 +54,6 @@ from `.claude/commands/cq/`. After editing a stage, re-sync:
 .claude/skills/qrspi/sync-commands.sh
 ```
 
-CI/reviewers will check that the two copies match.
-
-## Adding a profile
-
-1. Copy an existing profile in `working-docs/profiles/` as a starting point.
-2. Fill in: `profile`, `stack`, `workingDir`, `protectedPaths`, `apiBoundary`, the `build`
-   verb table, `changeTypeVerbs`, `researchLayers`, and `jira.mode`.
-3. Validate it: `python3 -c "import json; json.load(open('working-docs/profiles/<x>.json'))"`
-4. Add a row to the profile table in the README.
-5. Open a PR describing the stack and how you verified the verbs run.
-
-## Development workflow
-
-This project dogfoods itself — non-trivial changes are a great excuse to run QRSPI. Small
-fixes: just open a PR.
-
-1. Fork and branch from `main`.
-2. Make your change; keep commits focused with clear messages.
-3. If you touched a stage, run `sync-commands.sh` and commit the synced copies too.
-4. Open a PR. Describe the problem and the approach; link any finding it came from.
-
-## Code of Conduct
-
-Participation is governed by our [Code of Conduct](CODE_OF_CONDUCT.md). By participating
-you agree to uphold it.
-
 ## License
 
-By contributing, you agree your contributions are licensed under the [MIT License](LICENSE).
+MIT — see [LICENSE](LICENSE). Forks and derivatives are welcome under the same terms.

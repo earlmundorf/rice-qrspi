@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/earlmundorf/rice-qrspi/actions/workflows/ci.yml/badge.svg)](https://github.com/earlmundorf/rice-qrspi/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+[![Fork-friendly](https://img.shields.io/badge/fork-friendly-brightgreen.svg)](CONTRIBUTING.md)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-skill-8A2BE2.svg)](https://claude.com/claude-code)
 
 **QRSPI** is a structured way to take a ticket from *"here's a Jira issue"* to *"here's a
@@ -161,11 +161,16 @@ one-page [**QUICKREF**](.claude/skills/qrspi/QUICKREF.md).
 ├── CONTRIBUTING.md · CODE_OF_CONDUCT.md · LICENSE
 ```
 
-## Contributing
+## Using & adapting it
 
-Adoption is the goal — **new profiles for new stacks are the most valuable contribution.**
-See [CONTRIBUTING.md](CONTRIBUTING.md). The one rule: keep the stages stack-neutral; if
-something varies by stack, it goes in the config, not the command.
+This is a personal project, and the best way to use it is to **fork it and make it yours** —
+it's MIT, so adapt it freely, add profiles for your stack, ship your own version. Found a bug
+or have an idea? **Open an issue** — I read them. I'm **not accepting unsolicited pull
+requests** (they're closed automatically; nothing personal), so please don't send code you'd
+be sad to see closed — see [CONTRIBUTING.md](CONTRIBUTING.md) for the why and the how.
+
+If you're extending it, the one design rule: keep the stages stack-neutral; anything that
+varies by stack goes in the config, not the command.
 
 ## Attribution
 

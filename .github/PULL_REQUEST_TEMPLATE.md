@@ -1,3 +1,8 @@
+<!--
+  Heads up: rice-qrspi is a personal project and does NOT accept unsolicited pull requests —
+  PRs from non-collaborators are closed automatically. Forking is encouraged, and bugs/ideas
+  are welcome as issues instead. See CONTRIBUTING.md. (This template is for collaborators.)
+-->
 <!-- Thanks for contributing to rice-qrspi! -->
 
 ## What & why

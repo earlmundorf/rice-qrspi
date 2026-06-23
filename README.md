@@ -1,7 +1,3 @@
-
-
-https://github.com/user-attachments/assets/7a0d3b66-253c-4843-b9ae-e6847bef6cf2
-
 # rice-qrspi
 
 [![CI](https://github.com/earlmundorf/rice-qrspi/actions/workflows/ci.yml/badge.svg)](https://github.com/earlmundorf/rice-qrspi/actions/workflows/ci.yml)
@@ -23,10 +19,7 @@ and run `/cq:go YOUR-TICKET`.
 A `/cq:go TODO-1` run — Ticket → Research → Design → Structure → Plan → Implement → Validate,
 with the gates and verified checkpoints. Press play:
 
-<video src="https://github.com/earlmundorf/rice-qrspi/raw/main/demo/qrspi-demo.mp4" controls width="100%">
-  Your viewer can't embed the video —
-  <a href="https://github.com/earlmundorf/rice-qrspi/raw/main/demo/qrspi-demo.mp4">watch the MP4 here</a>.
-</video>
+https://github.com/user-attachments/assets/7a0d3b66-253c-4843-b9ae-e6847bef6cf2
 
 > A faithful reenactment for a clean, reproducible clip, rendered by
 > [VHS](https://github.com/charmbracelet/vhs) from [`demo/demo.tape`](demo/demo.tape). The

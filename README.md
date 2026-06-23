@@ -14,6 +14,13 @@ project-specific lives in one config file.
 This repo is the canonical, copy-me home for that skill. Take it, point it at your codebase,
 and run `/cq:go YOUR-TICKET`.
 
+> **On the model.** This implementation is a [Claude Code](https://claude.com/claude-code)
+> skill, and the demo below runs on Claude. The workflow itself is just structured
+> plain-language instructions — the stages, the blind-research rule, the gates, the
+> verb-resolved checks — so the *method* isn't Claude-specific and carries over to other
+> LLMs and agent harnesses. What you'd re-wire for a different stack is the plumbing (the
+> `/cq:*` commands, skill discovery, and subagent dispatch), not the approach.
+
 ## See it run
 
 A `/cq:go TODO-1` run — Ticket → Research → Design → Structure → Plan → Implement → Validate,

@@ -1,3 +1,7 @@
+
+
+https://github.com/user-attachments/assets/7a0d3b66-253c-4843-b9ae-e6847bef6cf2
+
 # rice-qrspi
 
 [![CI](https://github.com/earlmundorf/rice-qrspi/actions/workflows/ci.yml/badge.svg)](https://github.com/earlmundorf/rice-qrspi/actions/workflows/ci.yml)

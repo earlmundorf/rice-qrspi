@@ -20,7 +20,8 @@
 ## Checklist
 
 - [ ] If I edited a stage (`.claude/skills/qrspi/commands/*.md`), I ran
-      `sync-commands.sh` and committed the synced copies.
+      `sync-commands.sh` and re-tested `/cq:*` locally. (The published copies under
+      `.claude/commands/cq/` are generated and gitignored — don't commit them.)
 - [ ] I kept the stages **stack-neutral** — anything stack-specific went into config, not a command.
 - [ ] Any new/changed JSON validates.
 - [ ] Docs (README profile table, etc.) updated if needed.

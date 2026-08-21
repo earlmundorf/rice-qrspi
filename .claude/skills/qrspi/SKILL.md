@@ -74,8 +74,10 @@ Structure exposes a flawed design → re-run 3. Implementation hits a fundamenta
 
 ## Build adapter — the config IS the profile; detect once, confirm, persist
 
-All project specificity lives in `working-docs/config.json`. On first run (any stage), if
-it is missing, either copy the closest profile from `working-docs/profiles/` or detect and
+All project specificity lives in `working-docs/config.json`. The reliable way to get one is
+`install.sh <profile> <target-dir>`, which seeds it from a profile and never overwrites an
+existing config. Failing that — a hand-copied skill, no
+profile that fits — copy the closest profile from `working-docs/profiles/` or detect and
 build one, then confirm with the developer and save. Config fields:
 
 | Field | What it holds |
@@ -92,6 +94,7 @@ build one, then confirm with the developer and save. Config fields:
 | `manualVerificationSurfaces` | `[string]` — the places a human checks this stack (a UI route at a viewport, an admin console path, an endpoint call). Stages 3 and 7 draw manual criteria from here |
 | `sliceExample` | One sentence showing what a vertical slice looks like in this stack, naming the verbs each slice ends with. Stage 4 follows its shape |
 | `verbNamespaces` | For a repo with two toolchains: `{ label → prefix }` so a slice names which side's verbs it runs. `null` in a single-stack repo |
+| `triggerVocabulary` | Optional, profile-only. Stack words the installer appends to the installed `SKILL.md` description so the skill triggers on this stack's vocabulary |
 | `_notes` | Hard-won rules worth carrying with the config |
 
 Every verb named in `changeTypeVerbs` or `sliceExample` must exist in `build`. A mapping

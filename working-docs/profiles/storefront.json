@@ -47,6 +47,7 @@
   ],
   "sliceExample": "Slice 1: types + the api method in the apiBoundary (TYPECHECK, LINT). Slice 2: the component consuming it, with loading and error states wired (TYPECHECK, LINT, BUILD). Slice 3: the route/page it lands on plus its e2e spec (BUILD, E2E_TEST).",
   "verbNamespaces": null,
+  "triggerVocabulary": "components, pages, routing, hooks, contexts, state, API client, styling, storefront, cart, checkout",
   "_notes": [
     "Starter profile for a React/Vite TypeScript storefront. Copy to working-docs/config.json and adjust.",
     "The repo's CLAUDE.md is authoritative: functional components + named exports, all backend calls through apiBoundary (src/services/api.ts), typed responses, loading + error states, user-feedback helpers, styling ordering with dark: variants.",

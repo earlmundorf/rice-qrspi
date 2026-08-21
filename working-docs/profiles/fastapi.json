@@ -39,6 +39,7 @@
   ],
   "sliceExample": "Slice 1: Pydantic schemas + model/migration + their tests (TYPECHECK, UNIT_TEST). Slice 2: service logic behind the client/service boundary, unit-tested (LINT, TYPECHECK, UNIT_TEST). Slice 3: router path operation + dependencies + integration test (LINT, TYPECHECK, UNIT_TEST, INTEGRATION_TEST).",
   "verbNamespaces": null,
+  "triggerVocabulary": "router, path operation, Pydantic model, dependency, async endpoint, SQLAlchemy, Alembic migration, pytest fixture",
   "_notes": [
     "Starter profile for a FastAPI service managed with uv. Assumes a pyproject.toml + uv.lock, an 'app/' package exposing app.main:app, and a pytest 'integration' marker. Copy to working-docs/config.json and adjust.",
     "uv is the default: 'uv sync' installs from the lockfile and 'uv run <tool>' runs inside the project venv (no manual activation). pip alternative → INSTALL 'pip install -r requirements.txt', drop the 'uv run' prefixes. Poetry → INSTALL 'poetry install', prefix verbs with 'poetry run'.",

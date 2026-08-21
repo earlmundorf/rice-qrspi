@@ -134,16 +134,29 @@ only the resolved commands differ.
 ## Quickstart — adopt it in your repo
 
 ```bash
-# 1. Copy the skill into your project
-cp -r rice-qrspi/.claude/skills/qrspi  /path/to/your-repo/.claude/skills/
-
-# 2. Pick the closest profile as your starting config
-cp rice-qrspi/working-docs/profiles/storefront.json  /path/to/your-repo/working-docs/config.json
-#    (edit it: verbs, research layers, protected paths, jira.mode)
-
-# 3. Publish the /cq:* slash commands
-/path/to/your-repo/.claude/skills/qrspi/sync-commands.sh
+# One command: installs the skill, publishes /cq:*, seeds the config from a profile
+./install.sh storefront /path/to/your-repo      # or: springboot | fastapi
+./install.sh list                               # see the profiles
 ```
+
+Needs only POSIX `sh` — on Windows run it from Git Bash or WSL.
+
+Then edit `your-repo/working-docs/config.json` — verbs, research layers, protected paths,
+`jira.mode` — so it describes your stack. Re-running the installer replaces the skill and
+the commands but **keeps your config** (it writes the profile to `config.json.new` for you
+to diff), and leaves `working-docs/findings/` alone.
+
+<details>
+<summary>Or copy it in by hand</summary>
+
+```bash
+cp -r rice-qrspi/.claude/skills/qrspi  /path/to/your-repo/.claude/skills/
+cp rice-qrspi/working-docs/profiles/storefront.json  /path/to/your-repo/working-docs/config.json
+/path/to/your-repo/.claude/skills/qrspi/sync-commands.sh   # publish /cq:*
+```
+
+You lose the stack-specific trigger words the installer appends, and the findings seed.
+</details>
 
 Then, in Claude Code from your repo:
 

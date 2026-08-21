@@ -7,10 +7,12 @@ facts with `file:line` references, no opinions, no recommendations.
 ## Instructions
 
 1. Read `questions.md`. Group questions by research layer.
-2. If `working-docs/config.json` is missing, run build-adapter detection per SKILL.md
-   (layout, build system, verb table, protected paths, research layers) and confirm with
-   the developer before proceeding. Note any missing tooling (e.g., no test runner) in the
-   config.
+2. If `working-docs/config.json` is missing, say so first — `install.sh <profile> <dir>`
+   seeds one from a profile and is the reliable path. If the developer would rather not
+   re-install, run build-adapter detection per SKILL.md (layout, build system, verb table,
+   protected paths, research layers) and confirm every field with them before proceeding;
+   a guessed config produces wrong verbs and wrong layers. Note any missing tooling
+   (e.g., no test runner) in the config.
 3. Dispatch one subagent per layer, fresh context each, scoped to its questions:
    The layer list comes from `researchLayers` in `working-docs/config.json` — one
    subagent per layer, scoped to that layer's questions and scan targets. (This is what

@@ -28,7 +28,7 @@
 8. **Feed the findings loop.** If this ticket surfaced anything the workflow or a future
    ticket should know — a wrong/missing verb mapping, a research category the stages
    missed, a recurring codebase quirk, a tier mis-call — write a
-   `findings/YYYY-MM-DD-{slug}.md` in the skill from `TEMPLATE.md`. Summarize new findings
+   `working-docs/findings/YYYY-MM-DD-{slug}.md` from `TEMPLATE.md`. Summarize new findings
    and propose which to **promote** into the stage commands / SKILL.md / config / repo
    CLAUDE.md (user-approved; mark promoted ones `status: promoted`). Nothing worth carrying
    forward? Say so and skip — don't manufacture findings.

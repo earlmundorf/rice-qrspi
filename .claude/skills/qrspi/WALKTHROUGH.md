@@ -166,7 +166,7 @@ something doesn't match the plan it stops and asks rather than improvising.
    you own it?"* — no PR without your explicit yes.
 4. Opens the PR grounded in `design.md` (problem, the PATCH-vs-PUT decision and why, criteria
    status, manual steps for the reviewer). `jira.mode: none` → no ticket update.
-5. Appends a short retro, captures any `findings/`, and moves
+5. Appends a short retro, captures any `working-docs/findings/`, and moves
    `tickets/active/TODO-1-*.md` → `tickets/completed/`.
 
 Final diff is small and obvious — a new schema, one store method, one route, four assertions:

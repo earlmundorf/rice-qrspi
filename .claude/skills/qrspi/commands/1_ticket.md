@@ -12,7 +12,7 @@ and paste) and remember its path for stage 7. If `tickets/` doesn't exist, ignor
 
 ## Instructions
 
-0. **Load prior findings.** List the skill's `findings/*.md` (skip README/TEMPLATE). Read
+0. **Load prior findings.** List `working-docs/findings/*.md` (skip README/TEMPLATE). Read
    any whose `applies_to.area` or `ticket_type` plausibly matches this ticket — they carry
    what earlier tickets learned about this codebase and these stages. Let them inform the
    questions in step 3.

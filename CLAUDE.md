@@ -15,10 +15,10 @@ Validate). The skill is config-driven: all project specificity lives in
 .
 ├── .claude/skills/qrspi/   # the skill — SKILL.md is the source of truth
 │   ├── commands/           # the 7 stages + the /cq:go entry point
-│   ├── findings/           # self-improvement log
 │   └── sync-commands.sh    # publishes commands/ → .claude/commands/cq/
 ├── working-docs/
 │   ├── config.json         # active profile (TEMPLATE here)
+│   ├── findings/           # self-improvement log (project-owned, not overwritten)
 │   └── profiles/           # storefront.json, springboot.json, fastapi.json
 ├── tickets/{active,completed}/
 ├── CLAUDE.md

@@ -77,7 +77,7 @@ QRSPI is the structure that prevents that:
   so none of them rots under a giant scrollback, and each artifact is reviewable on its own.
 - **"Done" means verified.** Checkpoints resolve to real commands from your config; the
   workflow never proceeds on a red check or opens a PR you haven't explicitly owned.
-- **It compounds.** Each ticket can leave a `findings/` note that makes the next run sharper.
+- **It compounds.** Each ticket can leave a `working-docs/findings/` note that makes the next run sharper.
 
 The cost is a few minutes at three gates. The payoff is catching the wrong approach before
 it's a 400-line diff. When that tradeoff isn't worth it, drop a tier — same skill, less
@@ -163,10 +163,10 @@ one-page [**QUICKREF**](.claude/skills/qrspi/QUICKREF.md).
 │   ├── SKILL.md                 #   orchestration + the config schema
 │   ├── README · QUICKREF · WALKTHROUGH
 │   ├── commands/0_go … 7_validate.md
-│   ├── findings/                #   self-improvement log (the skill learns per ticket)
 │   └── sync-commands.sh
 ├── working-docs/
 │   ├── config.json              # active profile (a fill-in template here)
+│   ├── findings/                # self-improvement log (yours; survives skill updates)
 │   └── profiles/                # storefront.json · springboot.json · fastapi.json
 ├── tickets/{active,completed}/  # optional local ticket store (when Jira isn't wired)
 ├── examples/

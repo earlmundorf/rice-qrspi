@@ -25,8 +25,9 @@ and paste) and remember its path for stage 7. If `tickets/` doesn't exist, ignor
    codebase area the ticket could touch. Questions describe what to find, never what to
    build. Bad: "How should we add the new discount type?" Good: "How are discount types
    defined, registered, and evaluated today? (file:line)"
-4. Cover every layer in `researchLayers` (from `working-docs/config.json`) explicitly
-   where relevant, plus configuration and build/env concerns.
+4. Cover every category in `questionCategories` from `working-docs/config.json` — or, when
+   that is `null` or absent, every layer name in `researchLayers` — explicitly where
+   relevant, plus configuration and build/env concerns.
 5. If the ticket is trivial (<3 files, one sentence), say so and recommend skipping QRSPI.
 6. Show the developer both files. Ask only: "Any questions to add or remove?"
 7. End by printing: `Next: /cq:2_research working-docs/<TICKET-KEY>/ — run in a FRESH session.`

@@ -9,9 +9,10 @@
    result, and evidence in `validation.md`. Any failure → stop, fix via stage 6, re-run.
    A check that ran nothing (zero tests, skipped suite) counts as a failure, not a pass —
    record the real counts.
-2. List every **Manual** criterion with concrete steps (the stack's manual checks — UI
-   route/viewport, admin console path, API endpoint call) and who verifies. Do not claim
-   manual criteria as passed.
+2. List every **Manual** criterion with concrete steps, drawn from
+   `manualVerificationSurfaces` in `working-docs/config.json` (admin console path, UI
+   route/viewport, API endpoint call), and who verifies. Do not claim manual criteria as
+   passed.
 3. Confirm all `plan.md` checkboxes are checked; explain any that aren't.
 4. **Code ownership gate:** present the full diff summary (files + stats) and ask the
    developer to confirm: "Have you read this diff and do you own it?" Do not proceed to

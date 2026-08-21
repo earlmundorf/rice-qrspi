@@ -88,7 +88,16 @@ build one, then confirm with the developer and save. Config fields:
 | `changeTypeVerbs` | `glob → [VERBS]` — which checks a given change type requires |
 | `jira` | `{ mode: mcp \| manual \| none, project }` |
 | `researchLayers` | `[{ name, targets }]` — one stage-2 subagent per layer |
+| `questionCategories` | Categories stage 1 must cover in `questions.md`. `null` → use the `researchLayers` names |
+| `manualVerificationSurfaces` | `[string]` — the places a human checks this stack (a UI route at a viewport, an admin console path, an endpoint call). Stages 3 and 7 draw manual criteria from here |
+| `sliceExample` | One sentence showing what a vertical slice looks like in this stack, naming the verbs each slice ends with. Stage 4 follows its shape |
+| `verbNamespaces` | For a repo with two toolchains: `{ label → prefix }` so a slice names which side's verbs it runs. `null` in a single-stack repo |
 | `_notes` | Hard-won rules worth carrying with the config |
+
+Every verb named in `changeTypeVerbs` or `sliceExample` must exist in `build`. A mapping
+pointing at a verb that isn't defined — or at a `MANUAL:` verb that describes an *absence*
+("no runner configured") rather than a *procedure* ("import via the admin console, then
+check the log") — is a checkpoint that can never pass. Fix the pair together.
 
 Detection guidance when no profile fits:
 

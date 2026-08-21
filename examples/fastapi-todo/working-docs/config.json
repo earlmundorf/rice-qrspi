@@ -29,6 +29,14 @@
     { "name": "app-config", "targets": "app/main.py, router wiring, middleware, settings" },
     { "name": "build", "targets": "pyproject.toml, uv.lock, pytest/ruff/mypy config" }
   ],
+  "questionCategories": null,
+  "manualVerificationSurfaces": [
+    "Endpoint call — curl against the running app (RUN), checking status, body, and headers",
+    "Interactive docs — /docs: the schema matches the Pydantic model",
+    "Server logs — no tracebacks, and the expected log lines"
+  ],
+  "sliceExample": "Slice 1: Pydantic schemas + store method + their unit tests (TYPECHECK, UNIT_TEST). Slice 2: the router path operation wired to it, plus an integration test through the app (LINT, TYPECHECK, UNIT_TEST, INTEGRATION_TEST).",
+  "verbNamespaces": null,
   "_notes": [
     "Live config for the examples/fastapi-todo demo. jira.mode is 'none', so stage 1 reads the ticket from tickets/active/ instead of Jira.",
     "Stack managed with uv: 'uv sync' installs from the lockfile; 'uv run <tool>' runs inside the project venv.",

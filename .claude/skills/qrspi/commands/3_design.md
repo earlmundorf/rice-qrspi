@@ -18,9 +18,10 @@
    - **Design decisions** (each Q with chosen option and why)
    - **Confirmed assumptions & accepted risks**
    - **Success criteria** — split into *Automated* (verification verbs/commands, tests
-     that must pass) and *Manual* (checks appropriate to the stack — UI route/viewport,
-     admin console path, API endpoint response — defined by the repo's profile; say who
-     verifies)
+     that must pass) and *Manual*. Manual checks come from `manualVerificationSurfaces`
+     in `working-docs/config.json` — the places a human verifies this stack (admin console
+     path, UI route/viewport, API endpoint call); when that field is absent, use checks
+     appropriate to the stack. Each names who verifies.
    - **Out of scope**
 5. If the developer's answers reveal missing research, stop and route back:
    `Re-run /cq:1_ticket to add questions, then /cq:2_research.`

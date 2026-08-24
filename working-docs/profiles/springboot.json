@@ -29,6 +29,16 @@
     { "name": "config-security", "targets": "@Configuration, SecurityFilterChain, application-*.yml profiles, beans" },
     { "name": "build", "targets": "pom.xml (or build.gradle), plugins, Spring Boot version, profiles, CI" }
   ],
+  "questionCategories": null,
+  "manualVerificationSurfaces": [
+    "Endpoint call — curl/Postman against the running app (RUN), checking status, body, and headers",
+    "OpenAPI/Swagger UI, if exposed — the contract matches what the DTO declares",
+    "Application logs — no stack traces, and the expected log lines at the expected level",
+    "Actuator health/metrics, if enabled"
+  ],
+  "sliceExample": "Slice 1: entity/repository (or client interface) + migration + its test (COMPILE, INTEGRATION_TEST). Slice 2: service logic with unit tests (COMPILE, UNIT_TEST). Slice 3: controller + request/response DTOs + validation + integration test (COMPILE, UNIT_TEST, INTEGRATION_TEST).",
+  "verbNamespaces": null,
+  "triggerVocabulary": "controller, service, repository, entity, DTO, endpoint, bean, Spring Data, JPA, migration, application properties",
   "_notes": [
     "Starter profile for a Spring Boot service (Maven). Copy to working-docs/config.json and adjust.",
     "Gradle variant: set buildTool=gradle and swap verbs — COMPILE './gradlew classes', BUILD './gradlew bootJar -x test', UNIT_TEST './gradlew test', INTEGRATION_TEST './gradlew integrationTest', RUN './gradlew bootRun', protectedPaths drop target/ keep build/.",

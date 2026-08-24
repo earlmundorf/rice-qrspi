@@ -12,7 +12,7 @@ and paste) and remember its path for stage 7. If `tickets/` doesn't exist, ignor
 
 ## Instructions
 
-0. **Load prior findings.** List the skill's `findings/*.md` (skip README/TEMPLATE). Read
+0. **Load prior findings.** List `working-docs/findings/*.md` (skip README/TEMPLATE). Read
    any whose `applies_to.area` or `ticket_type` plausibly matches this ticket — they carry
    what earlier tickets learned about this codebase and these stages. Let them inform the
    questions in step 3.
@@ -25,11 +25,19 @@ and paste) and remember its path for stage 7. If `tickets/` doesn't exist, ignor
    codebase area the ticket could touch. Questions describe what to find, never what to
    build. Bad: "How should we add the new discount type?" Good: "How are discount types
    defined, registered, and evaluated today? (file:line)"
-4. Cover every layer in `researchLayers` (from `working-docs/config.json`) explicitly
-   where relevant, plus configuration and build/env concerns.
+4. Cover every category in `questionCategories` from `working-docs/config.json` — or, when
+   that is `null` or absent, every layer name in `researchLayers` — explicitly where
+   relevant, plus configuration and build/env concerns.
 5. If the ticket is trivial (<3 files, one sentence), say so and recommend skipping QRSPI.
 6. Show the developer both files. Ask only: "Any questions to add or remove?"
 7. End by printing: `Next: /cq:2_research working-docs/<TICKET-KEY>/ — run in a FRESH session.`
+
+## Grounding — no speculation
+
+Write for a human reader first; keep it useful to the tooling by keeping it true.
+- **Only verified facts.** Every claim traces to something you actually read — the ticket text, the code, or a command's output. Anchor code facts with `file:line`.
+- **Unknown stays unknown.** Can't confirm it? Write it as an open question or mark it `unconfirmed` and clarify with the developer — never fill the gap with a plausible guess, and never infer intent or motive.
+- **No editorializing, no padding.** Don't add tangential detail "for completeness"; unverified extras are what mislead later stages and seed hallucinations. Comprehensive on what the work needs, silent on what it doesn't.
 
 ## Do not
 

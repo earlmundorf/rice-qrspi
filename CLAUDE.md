@@ -15,12 +15,13 @@ Validate). The skill is config-driven: all project specificity lives in
 .
 ├── .claude/skills/qrspi/   # the skill — SKILL.md is the source of truth
 │   ├── commands/           # the 7 stages + the /cq:go entry point
-│   ├── findings/           # self-improvement log
 │   └── sync-commands.sh    # publishes commands/ → .claude/commands/cq/
 ├── working-docs/
 │   ├── config.json         # active profile (TEMPLATE here)
+│   ├── findings/           # self-improvement log (project-owned, not overwritten)
 │   └── profiles/           # storefront.json, springboot.json, fastapi.json
 ├── tickets/{active,completed}/
+├── install.sh              # install into a target repo (skill + /cq:* + config seed)
 ├── CLAUDE.md
 └── README.md
 ```
@@ -37,6 +38,19 @@ Validate). The skill is config-driven: all project specificity lives in
 - **Profiles are examples.** `working-docs/profiles/` holds the reference configs
   (`storefront.json`, `springboot.json`, `fastapi.json`); update them when the config
   schema changes.
+- **Two publishing paths, don't confuse them.** `sync-commands.sh` publishes *this* repo's
+  `commands/` into its own `.claude/commands/cq/` — that's the loop while editing a stage.
+  `install.sh` installs into *another* repo. It refuses to target this repo, so it can
+  never overwrite the source of truth. Keep it POSIX `sh` — no bashisms — so Git Bash and
+  WSL cover Windows without a second script to maintain.
+- **Keep `SKILL.md`'s description a complete sentence.** The installer appends a
+  `Also triggers on: …` line from the profile's `triggerVocabulary`, so there is no
+  placeholder to render and this repo's own skill is always valid as committed. The skill
+  directory is replaced wholesale on install, so the clause can never double up.
+- **Adding a config field?** Add it to the schema table in `SKILL.md`, to all three
+  profiles, to the `working-docs/config.json` template, to both `examples/*/working-docs/
+  config.json`, and to the installer's `known` key list — and give the stage that reads it
+  a fallback for configs written before the field existed.
 
 ## Development Guidelines
 

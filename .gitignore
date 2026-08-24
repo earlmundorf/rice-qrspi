@@ -27,11 +27,19 @@ Thumbs.db
 # Claude Code
 .claude/settings.local.json
 
+# Published /cq:* commands — generated from .claude/skills/qrspi/commands/ by
+# sync-commands.sh (or by install.sh in a target repo). The skill copy is canonical;
+# tracking both would let them drift.
+.claude/commands/cq/
+
 # Logs
 *.log
 logs/
 
-# QRSPI per-ticket scratch — keep the committed config and profiles, ignore the rest
+# QRSPI per-ticket scratch — keep the committed config, profiles and findings log,
+# ignore the rest
 working-docs/*
 !working-docs/config.json
 !working-docs/profiles/
+!working-docs/findings/
+!working-docs/findings/**

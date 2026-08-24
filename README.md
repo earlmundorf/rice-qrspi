@@ -77,7 +77,7 @@ QRSPI is the structure that prevents that:
   so none of them rots under a giant scrollback, and each artifact is reviewable on its own.
 - **"Done" means verified.** Checkpoints resolve to real commands from your config; the
   workflow never proceeds on a red check or opens a PR you haven't explicitly owned.
-- **It compounds.** Each ticket can leave a `findings/` note that makes the next run sharper.
+- **It compounds.** Each ticket can leave a `working-docs/findings/` note that makes the next run sharper.
 
 The cost is a few minutes at three gates. The payoff is catching the wrong approach before
 it's a 400-line diff. When that tradeoff isn't worth it, drop a tier — same skill, less
@@ -134,16 +134,29 @@ only the resolved commands differ.
 ## Quickstart — adopt it in your repo
 
 ```bash
-# 1. Copy the skill into your project
-cp -r rice-qrspi/.claude/skills/qrspi  /path/to/your-repo/.claude/skills/
-
-# 2. Pick the closest profile as your starting config
-cp rice-qrspi/working-docs/profiles/storefront.json  /path/to/your-repo/working-docs/config.json
-#    (edit it: verbs, research layers, protected paths, jira.mode)
-
-# 3. Publish the /cq:* slash commands
-/path/to/your-repo/.claude/skills/qrspi/sync-commands.sh
+# One command: installs the skill, publishes /cq:*, seeds the config from a profile
+./install.sh storefront /path/to/your-repo      # or: springboot | fastapi
+./install.sh list                               # see the profiles
 ```
+
+Needs only POSIX `sh` — on Windows run it from Git Bash or WSL.
+
+Then edit `your-repo/working-docs/config.json` — verbs, research layers, protected paths,
+`jira.mode` — so it describes your stack. Re-running the installer replaces the skill and
+the commands but **keeps your config** (it writes the profile to `config.json.new` for you
+to diff), and leaves `working-docs/findings/` alone.
+
+<details>
+<summary>Or copy it in by hand</summary>
+
+```bash
+cp -r rice-qrspi/.claude/skills/qrspi  /path/to/your-repo/.claude/skills/
+cp rice-qrspi/working-docs/profiles/storefront.json  /path/to/your-repo/working-docs/config.json
+/path/to/your-repo/.claude/skills/qrspi/sync-commands.sh   # publish /cq:*
+```
+
+You lose the stack-specific trigger words the installer appends, and the findings seed.
+</details>
 
 Then, in Claude Code from your repo:
 
@@ -163,10 +176,10 @@ one-page [**QUICKREF**](.claude/skills/qrspi/QUICKREF.md).
 │   ├── SKILL.md                 #   orchestration + the config schema
 │   ├── README · QUICKREF · WALKTHROUGH
 │   ├── commands/0_go … 7_validate.md
-│   ├── findings/                #   self-improvement log (the skill learns per ticket)
 │   └── sync-commands.sh
 ├── working-docs/
 │   ├── config.json              # active profile (a fill-in template here)
+│   ├── findings/                # self-improvement log (yours; survives skill updates)
 │   └── profiles/                # storefront.json · springboot.json · fastapi.json
 ├── tickets/{active,completed}/  # optional local ticket store (when Jira isn't wired)
 ├── examples/

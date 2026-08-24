@@ -58,7 +58,7 @@ gitignored except config.json and profiles/.
 
 ## Findings (the skill learns)
 
-Stage 1 loads `findings/*.md` whose area matches your ticket; stage 7 captures new ones
+Stage 1 loads `working-docs/findings/*.md` whose area matches your ticket; stage 7 captures new ones
 and proposes promotion into the stages/config/CLAUDE.md. Findings live IN the skill
 (tracked), not in `working-docs/` (per-ticket scratch). One finding per file from
 `TEMPLATE.md`.

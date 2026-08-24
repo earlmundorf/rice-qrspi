@@ -28,6 +28,14 @@
     { "name": "<layer-1>", "targets": "<files/dirs/patterns this layer scans>" },
     { "name": "<layer-2>", "targets": "<...>" }
   ],
+  "questionCategories": null,
+  "manualVerificationSurfaces": [
+    "<a place a human checks this stack — e.g. a UI route at a given viewport, an admin console path, an endpoint call>",
+    "<logs or console — what 'clean' looks like>",
+    "<the failure path, not just the happy one>"
+  ],
+  "sliceExample": "<what a vertical slice looks like in this stack, naming the verbs each slice ends with — e.g. 'Slice 1: schema + store method + their tests (TYPECHECK, UNIT_TEST). Slice 2: the route wired to it, checked end to end (LINT, BUILD, UNIT_TEST).' Only name verbs that exist in 'build' above.>",
+  "verbNamespaces": null,
   "_notes": [
     "This is a TEMPLATE. Copy the closest working-docs/profiles/*.json (storefront,",
     "springboot, fastapi) over this file for a real starting point, then adjust.",

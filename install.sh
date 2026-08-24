@@ -33,6 +33,48 @@ summary() {  # first entry of _notes
   awk '/"_notes"/{getline; gsub(/^[[:space:]]*"/,""); gsub(/",?[[:space:]]*$/,""); print; exit}' "$1"
 }
 
+# --- keep the rendered description inside the Agent Skills 1024-char limit --------
+# The description is what a skills-compatible agent matches a request against, and
+# over-long frontmatter is rejected *silently* — the skill simply never loads. Trim the
+# appended vocabulary to fit and say what was dropped, rather than installing a skill
+# that won't load. Echoes the (possibly trimmed) vocabulary on stdout.
+fit_vocabulary() {  # fit_vocabulary <skill-md> <vocabulary> <clause-prefix>
+  if ! command -v python3 >/dev/null 2>&1; then
+    printf '%s' "$2"
+    printf '  SKILL.md description             length UNCHECKED (no python3) — cap is 1024 chars\n' >&2
+    return
+  fi
+  python3 - "$1" "$2" "$3" <<'PY'
+import re, sys
+LIMIT = 1024
+skill, tv, prefix = sys.argv[1], sys.argv[2], sys.argv[3]
+fm = open(skill).read().split('---')[1]
+m = re.search(r'description:\s*>?\s*\n((?:  .*\n)+)', fm)
+if not m:
+    print(tv, end=''); sys.exit()
+body = ' '.join(l.strip() for l in m.group(1).splitlines())
+budget = LIMIT - len(body) - len(prefix) - 1  # -1 for the space joining the clause
+if budget <= 0:
+    print('', end='')
+    print(f"  SKILL.md description             WARNING: description is already {len(body)} "
+          f"chars, at or over the {LIMIT} limit — shorten it before adding vocabulary", file=sys.stderr)
+    sys.exit()
+kept, dropped, used = [], [], 0
+for term in (t.strip() for t in tv.split(',')):
+    if not term:
+        continue
+    add = len(term) + (2 if kept else 0)
+    if used + add <= budget:
+        kept.append(term); used += add
+    else:
+        dropped.append(term)
+if dropped:
+    print(f"  SKILL.md description             trimmed to fit {LIMIT} chars — dropped: "
+          f"{', '.join(dropped)}", file=sys.stderr)
+print(', '.join(kept), end='')
+PY
+}
+
 cmd_list() {
   printf '\nQRSPI %s — available profiles:\n\n' "$VERSION"
   for p in "$PROFILES_DIR"/*.json; do
@@ -75,6 +117,9 @@ cmd_install() {
 
   # ---- 2. append the stack trigger clause to the installed copy ----------------------
   skill="$target/.claude/skills/qrspi/SKILL.md"
+  if [ -n "$tv" ]; then
+    tv=$(fit_vocabulary "$skill" "$tv" "Also triggers on: ")
+  fi
   if [ -n "$tv" ]; then
     # Insert a folded-scalar continuation line just before the frontmatter's closing ---.
     awk -v tv="$tv" 'BEGIN{d=0}

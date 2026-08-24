@@ -151,3 +151,12 @@ Drift means `/cq` behaves differently from the documented stage — don't let th
 Deploy, push without consent, modify `protectedPaths` (generated/vendored/OOTB code),
 write design.md before the stage-3 Q&A, proceed past failed verification, or run more
 ceremony than the ticket warrants.
+
+## Bundled docs
+
+Linked so a skills-compatible agent can load them on demand — unlinked files are never
+loaded by progressive disclosure.
+
+- [QUICKREF.md](./QUICKREF.md) — one-page cheat sheet: commands, tiers, gates
+- [WALKTHROUGH.md](./WALKTHROUGH.md) — one ticket start to finish
+- [README.md](./README.md) — what this directory is and how to add a stack
